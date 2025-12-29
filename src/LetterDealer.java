@@ -1,46 +1,67 @@
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class LetterDealer{
-    void guessLetter(String gameWord, int wordNumLetters, String hiddenWord){
+public class LetterDealer {
+    void guessLetter(String gameWord, int wordNumLetters, String hiddenWord) {
 
+        Scanner scan = new Scanner(System.in); //Initiatize out from While loop 
         char[] ch = gameWord.toLowerCase().toCharArray();
         char[] chHidden = hiddenWord.toCharArray();
+	
+        List<String> wrongLetters = new ArrayList<>();
 
-        int rightLetters=0;
-        int numTrys=7;
+        int rightLetters = 0;
+        int numTrys = 7;
 
-        while (true){
+        while (true) {
 
             boolean letterWasRight = false;
             char letter;
 
-            Scanner scan = new Scanner(System.in);
-
-            System.out.println("\nChute uma letra: ");
+            System.out.println("Chute uma letra: ");
             letter = scan.nextLine().toLowerCase().charAt(0);
 
-            for (int i=0; i<ch.length; i++) {
+            for (int i = 0; i < ch.length; i++) {
 
-                if (ch[i] == letter){
-                    chHidden[i] = letter;
-                    rightLetters++;
-                    letterWasRight = true;
-                }
-                System.out.print(chHidden[i]);
+		//Prevents counting the same correct letter twice
+
+		if (ch[i] == letter) {
+		    if(chHidden[i] == '_'){
+                       chHidden[i] = letter;
+                       rightLetters++;
+		    }
+		    letterWasRight = true;
+		}
+                System.out.print(chHidden[i] + " ");
             }
 
-            if (!letterWasRight) numTrys--;
+            if (!letterWasRight) {
 
-            System.out.println("\nVocê tem mais "+numTrys+" tentativas.");
-            if (rightLetters == wordNumLetters){
-                System.out.println("\nParabens, você acertou :)");
+		// CHAR -> STRING (letter value)
+                String guessedInput = String.valueOf(letter);
+                
+		//User's trying enter a same letter of wrongList elements
+                if (wrongLetters.contains(guessedInput)) {
+                    System.out.println("\nOps, esta letra já foi escolhida: " + guessedInput);
+                } else {
+                    wrongLetters.add(guessedInput);
+                    numTrys--;
+                }
+            }
+
+            System.out.println("\nLetras erradas: " + String.join(", ", wrongLetters));
+            System.out.println("Você tem mais " + numTrys + " tentativas.");
+
+            if (rightLetters == wordNumLetters) {
+                System.out.println("\nParabéns, você acertou :)");
                 break;
-            } else if (numTrys<=0) {
+            } else if (numTrys <= 0) {
                 System.out.println("\nPoxa, suas chances acabaram :(");
                 break;
             }
-        }
-    }
 
+        }	
+    }
 }
