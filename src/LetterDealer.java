@@ -11,17 +11,34 @@ public class LetterDealer {
         char[] chHidden = hiddenWord.toCharArray();
 	
         List<String> wrongLetters = new ArrayList<>();
-
-        int rightLetters = 0;
+	int rightLetters = 0;
         int numTrys = 7;
+        char letter;
+
 
         while (true) {
-
+	
             boolean letterWasRight = false;
-            char letter;
+
+	  try{
 
             System.out.println("Chute uma letra: ");
             letter = scan.nextLine().toLowerCase().charAt(0);
+
+		if(!checkInput(letter)){
+			System.out.println("So aceitamos letras (a-Z)");
+			continue;
+		}
+		
+	  }
+	  catch(StringIndexOutOfBoundsException e){
+			System.out.println("Entrada Invalida. Digite uma letra (a-A)");
+			continue;
+		}
+	  catch(Exception e){
+			System.out.println("ERRO INESPERADO");
+			continue;
+		}
 
             for (int i = 0; i < ch.length; i++) {
 
@@ -64,4 +81,8 @@ public class LetterDealer {
 
         }	
     }
+	private static boolean checkInput(char letter){
+		return Character.isLetter(letter);
+	}
+
 }
