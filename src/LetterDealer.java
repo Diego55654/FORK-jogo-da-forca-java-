@@ -3,19 +3,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import boneco.Toy;
+import boneco.ToyBuilder;
+
+
+
 public class LetterDealer {
-    void guessLetter(String gameWord, int wordNumLetters, String hiddenWord) {
+    void guessLetter(String gameWord, int wordNumLetters, String hiddenWord, Toy toy) {
 
         Scanner scan = new Scanner(System.in); //Initiatize out from While loop 
-        char[] ch = gameWord.toLowerCase().toCharArray();
+
+	char[] ch = gameWord.toLowerCase().toCharArray();
         char[] chHidden = hiddenWord.toCharArray();
 	
         List<String> wrongLetters = new ArrayList<>();
 	int rightLetters = 0;
         int numTrys = 7;
+	int erro = 0;
+
+	boolean victory = false;
         char letter;
-
-
+	 
         while (true) {
 	
             boolean letterWasRight = false;
@@ -56,9 +64,13 @@ public class LetterDealer {
 
             if (!letterWasRight) {
 
+		erro++;	
+		toy.drawToy(erro);
+
+	
 		// CHAR -> STRING (letter value)
                 String guessedInput = String.valueOf(letter);
-                
+
 		//User's trying enter a same letter of wrongList elements
                 if (wrongLetters.contains(guessedInput)) {
                     System.out.println("\nOps, esta letra já foi escolhida: " + guessedInput);
@@ -69,14 +81,22 @@ public class LetterDealer {
             }
 
             System.out.println("\nLetras erradas: " + String.join(", ", wrongLetters));
-            System.out.println("Você tem mais " + numTrys + " tentativas.");
+	if (numTrys  > 0 ){
+        System.out.println("Você tem mais " + numTrys + " tentativas.");
+	}
+	    
+	    if (rightLetters == wordNumLetters) {
+		if (erro == 0){
+		System.out.println("\nParabéns, você acertou a palavra sem um único erro!");
+	        
+		} else {
+		System.out.println("\nParabéns, você acertou :)");
+		}
+		break;
 
-            if (rightLetters == wordNumLetters) {
-                System.out.println("\nParabéns, você acertou :)");
-                break;
-            } else if (numTrys <= 0) {
+            } if (numTrys <= 0) {
                 System.out.println("\nPoxa, suas chances acabaram :(");
-                break;
+		break;
             }
 
         }	
