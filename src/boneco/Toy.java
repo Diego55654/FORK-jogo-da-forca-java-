@@ -2,7 +2,7 @@ package boneco;
 
 public class Toy {
 
-    // Corda
+    // Rope default
     String rope;
 
 
@@ -10,11 +10,11 @@ public class Toy {
 
     String body;
 
-    //Pernas
+    //Legs
     String leftlegs;
     String rightlegs;
 	
-    //Braços
+    //Arms
     String leftarms;
     String rightarms;
 
@@ -31,72 +31,66 @@ public class Toy {
 
 	this.leftarms = leftarms;
 	this.rightarms = rightarms;
-
     }
-
+	
     public void drawToy(int erros) {
-        System.out.println(rope);
+        System.out.println("\n" + rope);
 	
 		switch(erros){
 			
 			case 1:
-        		System.out.println(head);
+        		System.out.println("                      " + head);
 			break;
 
 			case 2:
-        		System.out.println(head);
-        		System.out.println(body);
+        		System.out.println("                      " + head);
+        		System.out.println("                      " + body);
 
 			break;
                         
 			case 3:	
-			System.out.println(head);
-        		System.out.println(body);
+			System.out.println("                      " + head);
+        		System.out.println("                      " + body);
 
-        		System.out.println(leftlegs);
-        		
+        		System.out.println("                     " + leftlegs);
+
 			break;
 
 			case 4:
 
-			System.out.println(head);
-        		System.out.println(body);
+			System.out.println("                      " + head);
+        		System.out.println("                      " + body);
 
-        		System.out.println(leftlegs + rightlegs);
-        		
+			System.out.println("                     "+ leftlegs + " " + rightlegs);
+				
 			//System.out.println(leftarms);
 
 			break;
 
-			case 5:
-        		System.out.println(head);
-        		System.out.println("\\|"leftarms + body);
+			case 5:     			
+			System.out.println("                      " + head);
+    			System.out.println("                     " + leftarms + body); 
+    			System.out.println("                     " + leftlegs + " " + rightlegs);
+    			break;
 
-        		System.out.println(leftlegs + rightlegs);
-        		
-			//System.out.println(leftarms);
+			case 6:    			
+			System.out.println("                      " + head);
+    			System.out.println("                     " + leftarms + body + rightarms);
+    			System.out.println("                     " + leftlegs + " " + rightlegs);
+    			break;
+
+			case 7:
+			System.out.println("                      " + "X");
+    			System.out.println("                     " + leftarms + body + rightarms);
+    			System.out.println("                     " + leftlegs + " " + rightlegs);
 			
+			System.out.println("\nGAME OVER\n O boneco foi enformado! ");
 			break;
-
-			case 6:
-
-			System.out.println(head);
-        		System.out.println(body);
-
-        		System.out.println(rightlegs + leftlegs);
-        
-			System.out.println(leftarms + rightarms);
-	
-			break;
-		default:
-			
-			System.out.println("\nParabéns por acertar todas as letras sem um único erro");
+		default:	
+			System.out.println("\nValor inválido: número de erros fora do intervalo (0 a 7).");
 			break;
 		}
 
-	
-
-        //System.out.println(leftlegs + leftarms);
 
     }
 }

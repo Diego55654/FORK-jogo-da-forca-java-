@@ -5,19 +5,24 @@ public class ToyBuilder {
 
     public static void main(String[] args) {
 
-	String rope      = "----------------------|";
-        String head      = "                      O"; 
-        String body      = "                      |";
+}
+	
+    //Method to return an object
+    public static Toy buildToy(){
+	String rope      = "\n----------------------|";
+        String head      = "O"; 
+        String body      = "|";
 
-	//PERNAS
-        String leftlegs = "                     /";
-        String rightlegs = " \\";
+	//Legs
+        String leftlegs = "/";
+        String rightlegs = "\\";
 
-	//BRAÇOS
-	String leftarms  = "———"; 
-	String rightarms  = "———";
+	//arms
+	String leftarms  = "/"; 
+	String rightarms  = "\\";
 
-        // Construção do boneco
+
+	// Building toy
         Toy toy = new Toy(
             rope,
             head,
@@ -28,8 +33,9 @@ public class ToyBuilder {
             rightarms
         );
 
-        toy.drawToy(5);
-
+        //toy.drawToy(6);
+	
+	return toy;
     }
 }
 
