@@ -3,6 +3,14 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+##File contaning bytecode java
+*.class
+
+##Building dirctories
+target/
+build/
+
+
 ### Eclipse ###
 .apt_generated
 .classpath
